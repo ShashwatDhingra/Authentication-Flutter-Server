@@ -1,15 +1,17 @@
 console.log('JAI GURU JI');
 
 const express = require('express');
-const mongoose = require('mongoose');
-
 const app = express();
 
-const PORT = process.env.PORT || 3000;
+const mongoose = require('mongoose');
+require('dotenv').config();
+const db = require('./db')
+const authRouter = require('./routes/auth');
 
-app.get('/test', (req, res)=>{
-    res.json({"testing": 'pass'})
-})
+app.use(express.json());
+app.use('/api', authRouter);
+
+const PORT = process.env.PORT || 3000;
 
 app.listen(PORT, () => {
     console.log(`Running on PORT ${PORT}`);
