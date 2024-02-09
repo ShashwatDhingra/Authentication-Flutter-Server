@@ -82,7 +82,7 @@ Router.post('/tokenIsValid', async (req, res) => {
 
 // get user data
 Router.get('/', auth, async (req, res) => {
-    const user = await User.findOne(req.user);
+    const user = await User.findById(req.user);
     res.json({ ...user._doc, token: req.ltoken });
 });
 
